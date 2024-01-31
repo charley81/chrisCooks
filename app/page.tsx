@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { BlogPostPreview } from '@/components'
 
 export const metaData: Metadata = {
   title: 'chrisCooks',
@@ -12,7 +13,7 @@ export default function Home() {
         <h1>Cooking with Chris</h1>
       </header>
       <section>
-        <p className="text-base">blog post will go here</p>
+        <BlogPostPreview />
       </section>
     </main>
   )
