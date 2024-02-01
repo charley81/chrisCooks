@@ -1,3 +1,14 @@
+export type ArticleType = {
+  title: string
+  publishDate: string
+  slug: string
+  id: string
+  excerpt: string
+  author: { name: string }
+  coverImage: { responsiveImage: string }
+  content: string
+}
+
 export type MealType = {
   idMeal: string | null
   strMeal: string
