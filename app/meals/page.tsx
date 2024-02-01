@@ -25,10 +25,15 @@ export default async function Home() {
 
   return (
     <main className="text-4xl p-4 max-w-xl mx-auto">
-      <Link href="/meals" className="text-sm text-blue-600">
-        Random Meals
-      </Link>
-      <h1>main page</h1>
+      <header className="flex items-end gap-4">
+        <h1>Random Meals</h1>
+        <Link href="/" className="text-blue-600 text-sm">
+          back
+        </Link>
+      </header>
+      <section className="mt-8">
+        <BlogPostPreview meals={data.meals} />
+      </section>
     </main>
   )
 }
