@@ -1,18 +1,18 @@
 import { Metadata } from 'next'
-import { BlogPostPreview } from '@/components'
+import Link from 'next/link'
+import { request } from '../lib/datocms'
 
-const url = 'https://www.themealdb.com/api/json/v1/1/search.php?f=a'
-
-const fetchMeals = async () => {
-  const response = await fetch(url)
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch meals')
+const MEAL_ARTICLES_QUERY = `
+query MealArticles {
+  allArticles {
+    title
+    publishDate
+    slug
+    id
+    excerpt
   }
-
-  const data = await response.json()
-  return data
 }
+`
 
 export const metaData: Metadata = {
   title: 'chrisCooks',
@@ -20,16 +20,20 @@ export const metaData: Metadata = {
 }
 
 export default async function Home() {
-  const data = await fetchMeals()
+  const {
+    data: { allArticles }
+  } = await request({ query: MEAL_ARTICLES_QUERY })
 
+  console.log(allArticles)
   return (
     <main className="text-4xl p-4 max-w-xl mx-auto">
-      <header>
-        <h1>Cooking with Chris</h1>
-      </header>
-      <section>
-        <BlogPostPreview meals={data.meals} />
-      </section>
+      <Link href="/meals" className="text-sm text-blue-600">
+        Random Meals
+      </Link>
+      <h1>main page</h1>
     </main>
   )
+}
+function performRequest() {
+  throw new Error('Function not implemented.')
 }
