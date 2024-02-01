@@ -1,15 +1,25 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { request } from '../lib/datocms'
+import { ArticleType } from '../utils/types'
 
 const MEAL_ARTICLES_QUERY = `
-query MealArticles {
+query MyQuery {
   allArticles {
     title
     publishDate
     slug
     id
     excerpt
+    author {
+      name
+    }
+    coverImage {
+      responsiveImage {
+        src
+      }
+    }
+    content
   }
 }
 `
@@ -30,7 +40,19 @@ export default async function Home() {
       <Link href="/meals" className="text-sm text-blue-600">
         Random Meals
       </Link>
-      <h1>main page</h1>
+      <section className="mt-8">
+        {allArticles.map((article: ArticleType) => (
+          <Link
+            href={`/recipe/${article.id}`}
+            key={article.id}
+            className="block mb-4"
+          >
+            <h3 className="text-4xl">{article.title}</h3>
+            <p className="text-base">{article.excerpt}</p>
+            <p className="text-base text-slate-600">{article.author.name}</p>
+          </Link>
+        ))}
+      </section>
     </main>
   )
 }
