@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { BlogPostPreview } from '@/components'
+import BlogPostPreview from '@/components/blog-post-preview'
 import Link from 'next/link'
 
 const url = 'https://www.themealdb.com/api/json/v1/1/search.php?f=a'
@@ -20,7 +20,7 @@ export const metaData: Metadata = {
   description: 'A cooking blog for chef Chris'
 }
 
-export default async function Home() {
+export default async function MealsPage() {
   const data = await fetchMeals()
 
   return (
