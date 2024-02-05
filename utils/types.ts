@@ -65,4 +65,10 @@ export type MealType = {
   dateModified: string | null
 }
 
+export type NavLink = {
+  href: string
+  label: string
+  icon: React.ReactNode
+}
+
 export type MealsType = MealType[]
