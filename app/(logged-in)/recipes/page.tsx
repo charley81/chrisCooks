@@ -34,7 +34,6 @@ export default async function Home() {
     data: { allArticles }
   } = await request({ query: MEAL_ARTICLES_QUERY })
 
-  console.log(allArticles)
   return (
     <main className="text-4xl p-4 max-w-xl mx-auto">
       <Link href="/meals" className="text-sm text-blue-600">
