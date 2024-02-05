@@ -3,6 +3,7 @@ import Image from 'next/image'
 import ShowcaseImg from '../assets/showcase.svg'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import Logo from '@/components/logo'
 
 export const metaData: Metadata = {
   title: 'chrisCooks',
@@ -13,9 +14,7 @@ export default async function Home() {
   return (
     <main>
       <header className="max-w-6xl mx-auto px-4 sm:px-8 py-6">
-        <h3 className="text-4xl font-bold">
-          chris<span className="text-blue-700">Cooks</span>
-        </h3>
+        <Logo />
       </header>
       <section className="max-w-6xl mx-auto px-4 sm:px-8 h-screen -mt-20 grid lg:grid-cols-[1fr,400px] items-center">
         <div>
