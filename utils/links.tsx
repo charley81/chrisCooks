@@ -13,3 +13,5 @@ const links: NavLink[] = [
     icon: <Utensils />
   }
 ]
+
+export default links
