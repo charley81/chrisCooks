@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import links from '@/utils/links'
 import LinksDropdown from './links-dropdown'
-import ThemeToggle from './theme-toggle'
+import { ThemeToggle } from './theme-toggle'
 import { UserButton } from '@clerk/nextjs'
 
 export default function Navbar() {
