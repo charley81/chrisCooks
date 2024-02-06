@@ -27,9 +27,6 @@ export default async function MealsPage() {
     <main className="text-4xl p-4 max-w-xl mx-auto">
       <header className="flex items-end gap-4">
         <h1>Random Meals</h1>
-        <Link href="/" className="text-blue-600 text-sm">
-          back
-        </Link>
       </header>
       <section className="mt-8">
         <BlogPostPreview meals={data.meals} />
