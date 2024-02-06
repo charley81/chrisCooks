@@ -36,9 +36,6 @@ export default async function Home() {
 
   return (
     <main className="text-4xl p-4 max-w-xl mx-auto">
-      <Link href="/meals" className="text-sm text-blue-600">
-        Random Meals
-      </Link>
       <section className="mt-8">
         {allArticles.map((article: ArticleType) => (
           <Link
