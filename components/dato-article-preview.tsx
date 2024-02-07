@@ -4,7 +4,7 @@ import { DatoArticlePreviewProps } from '@/utils/types'
 
 export default function DatoArticlePreview({ meals }: DatoArticlePreviewProps) {
   return (
-    <ul className="">
+    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {meals.map(meal => {
         return (
           <li key={meal.slug} className="mb-4">
