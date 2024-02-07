@@ -1,15 +1,17 @@
-export type ArticleType = {
+export type DatoCMSArticle = {
   title: string
-  publishDate: string
+  category: {
+    name: string
+  }
   slug: string
   id: string
-  excerpt: string
-  author: { name: string }
-  coverImage: { responsiveImage: string }
+  coverImage: {
+    url: string
+  }
   content: string
 }
 
-export type MealType = {
+export type MealDbAPIArticle = {
   idMeal: string | null
   strMeal: string
   strDrinkAlternate: string
@@ -71,4 +73,6 @@ export type NavLink = {
   icon: React.ReactNode
 }
 
-export type MealsType = MealType[]
+export interface DatoArticlePreviewProps {
+  meals: DatoCMSArticle[]
+}

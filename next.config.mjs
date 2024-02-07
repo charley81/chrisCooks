@@ -7,6 +7,12 @@ const nextConfig = {
         hostname: 'www.themealdb.com',
         port: '',
         pathname: '/images/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.datocms-assets.com',
+        port: '',
+        pathname: '**'
       }
     ]
   }
