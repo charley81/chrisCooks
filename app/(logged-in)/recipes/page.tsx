@@ -36,7 +36,7 @@ export default async function RecipesPage() {
         <h1 className="text-4xl font-bold">Chris's recipes</h1>
       </header>
       <section className="mt-8">
-        <DatoArticlePreview meals={allArticles} />
+        <DatoArticlePreview articles={allArticles} />
       </section>
     </main>
   )
