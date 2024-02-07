@@ -31,12 +31,12 @@ export default async function RecipesPage() {
   } = await request({ query: MEAL_ARTICLES_QUERY })
 
   return (
-    <main className="pt-8 max-w-xl mx-auto">
+    <main className="p-4 mt-8 max-w-xl mx-auto">
       <header className="flex items-end gap-4">
         <h1 className="text-4xl font-bold">Chris's recipes</h1>
       </header>
       <section className="mt-8">
-        <DatoArticlePreview meals={allArticles} />
+        <DatoArticlePreview articles={allArticles} />
       </section>
     </main>
   )

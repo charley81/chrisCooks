@@ -73,6 +73,6 @@ export type NavLink = {
   icon: React.ReactNode
 }
 
-export interface DatoArticlePreviewProps {
-  meals: DatoCMSArticle[]
+export interface DatoArticleProps {
+  articles: DatoCMSArticle[]
 }
