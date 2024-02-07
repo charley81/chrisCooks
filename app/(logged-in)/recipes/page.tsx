@@ -1,25 +1,21 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Metadata } from 'next'
-import Link from 'next/link'
 import { request } from '../../../lib/datocms'
-import { ArticleType } from '../../../utils/types'
+import DatoArticlePreview from '@/components/dato-article-preview'
 
 const MEAL_ARTICLES_QUERY = `
 query MyQuery {
   allArticles {
-    title
-    publishDate
-    slug
-    id
-    excerpt
-    author {
+    category {
       name
     }
-    coverImage {
-      responsiveImage {
-        src
-      }
-    }
     content
+    id
+    slug
+    title
+    coverImage {
+      url
+    }
   }
 }
 `
@@ -29,25 +25,18 @@ export const metaData: Metadata = {
   description: 'A cooking blog for chef Chris'
 }
 
-export default async function Home() {
+export default async function RecipesPage() {
   const {
     data: { allArticles }
   } = await request({ query: MEAL_ARTICLES_QUERY })
 
   return (
-    <main className="text-4xl p-4 max-w-xl mx-auto">
+    <main className="pt-8 max-w-xl mx-auto">
+      <header className="flex items-end gap-4">
+        <h1 className="text-4xl font-bold">Chris's recipes</h1>
+      </header>
       <section className="mt-8">
-        {allArticles.map((article: ArticleType) => (
-          <Link
-            href={`/recipe/${article.id}`}
-            key={article.id}
-            className="block mb-4"
-          >
-            <h3 className="text-4xl">{article.title}</h3>
-            <p className="text-base">{article.excerpt}</p>
-            <p className="text-base text-slate-600">{article.author.name}</p>
-          </Link>
-        ))}
+        <DatoArticlePreview meals={allArticles} />
       </section>
     </main>
   )
