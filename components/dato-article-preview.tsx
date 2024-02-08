@@ -14,7 +14,7 @@ export default function DatoArticlePreview({ articles }: DatoArticleProps) {
                   src={article.coverImage.url}
                   alt={article.title}
                   fill
-                  className="rounded object-contain"
+                  className="rounded object-cover"
                 />
               </div>
               <p className="text-2xl">{article.title}</p>
