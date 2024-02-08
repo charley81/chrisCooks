@@ -41,6 +41,3 @@ export default async function RecipesPage() {
     </main>
   )
 }
-function performRequest() {
-  throw new Error('Function not implemented.')
-}

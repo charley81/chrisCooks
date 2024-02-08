@@ -3,7 +3,7 @@ import { NavLink } from './types'
 
 const links: NavLink[] = [
   {
-    href: 'recipes',
+    href: '/recipes',
     label: 'recipes',
     icon: <CookingPot />
   },
