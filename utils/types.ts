@@ -1,4 +1,4 @@
-export type DatoCMSArticle = {
+export type DatoCMSArticlePreview = {
   title: string
   category: {
     name: string
@@ -9,6 +9,23 @@ export type DatoCMSArticle = {
     url: string
   }
   content: string
+}
+
+export type DatoCMSArticleDetails = {
+  data: {
+    article: {
+      title: string
+      category: {
+        name: string
+      }
+      slug: string
+      id: string
+      coverImage: {
+        url: string
+      }
+      content: string
+    }
+  }
 }
 
 export type MealDbAPIArticle = {
@@ -74,5 +91,5 @@ export type NavLink = {
 }
 
 export interface DatoArticleProps {
-  articles: DatoCMSArticle[]
+  articles: DatoCMSArticlePreview[]
 }
