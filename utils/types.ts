@@ -90,6 +90,10 @@ export type NavLink = {
   icon: React.ReactNode
 }
 
+export interface MealsDBListProps {
+  meals: MealDbAPIArticle[]
+}
+
 export interface DatoArticleProps {
   articles: DatoCMSArticlePreview[]
 }

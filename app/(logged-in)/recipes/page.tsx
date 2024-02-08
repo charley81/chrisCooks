@@ -2,6 +2,7 @@
 import { Metadata } from 'next'
 import { request } from '../../../lib/datocms'
 import DatoArticlePreview from '@/components/dato-article-preview'
+import PageTitle from '@/components/page-title'
 
 const MEAL_ARTICLES_QUERY = `
 query MyQuery {
@@ -32,9 +33,7 @@ export default async function RecipesPage() {
 
   return (
     <main className="p-4 mt-8 max-w-xl mx-auto">
-      <header className="flex items-end gap-4 px-4">
-        <h1 className="text-4xl font-bold">Chris's recipes</h1>
-      </header>
+      <PageTitle title="Chris recipes" />
       <section className="mt-8 px-4">
         <DatoArticlePreview articles={allArticles} />
       </section>
