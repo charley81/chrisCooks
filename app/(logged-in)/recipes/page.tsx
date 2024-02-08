@@ -32,10 +32,10 @@ export default async function RecipesPage() {
 
   return (
     <main className="p-4 mt-8 max-w-xl mx-auto">
-      <header className="flex items-end gap-4">
+      <header className="flex items-end gap-4 px-4">
         <h1 className="text-4xl font-bold">Chris's recipes</h1>
       </header>
-      <section className="mt-8">
+      <section className="mt-8 px-4">
         <DatoArticlePreview articles={allArticles} />
       </section>
     </main>
