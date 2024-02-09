@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { Button } from '@/components/ui/button'
 
 const url = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i='
 
@@ -19,11 +20,11 @@ export default async function SingleMealPage({
   const data = await getSingleMeal(params.id)
   const title = data?.meals[0]?.strMeal
   const imgSrc = data?.meals[0]?.strMealThumb
+  const category = data?.meals[0]?.strCategory
   const instructions = data?.meals[0]?.strInstructions
 
   return (
-    <div>
-      <Link href="/meals">back to meals</Link>
+    <div className="max-w-4xl mx-auto mt-16 px-4">
       <Image
         src={imgSrc}
         alt={title}
@@ -32,8 +33,14 @@ export default async function SingleMealPage({
         className="w-48 h-48"
         priority
       />
-      <h3>{title}</h3>
-      <p>{instructions}</p>
+      <h3 className="text-4xl pt-4 font-bold">{title}</h3>
+      <h4 className="text-1xl text-slate-600 mt-2 mb-2 font-bold">
+        {category}
+      </h4>
+      <p className="text-slate-600 text-base">{instructions}</p>
+      <Button className="mt-4" asChild>
+        <Link href="/api-recipes">Back</Link>
+      </Button>
     </div>
   )
 }
