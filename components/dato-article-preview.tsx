@@ -1,6 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { DatoArticleProps } from '@/utils/types'
+import { truncateText } from '@/utils/helpers'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from '@/components/ui/tooltip'
 
 export default function DatoArticlePreview({ articles }: DatoArticleProps) {
   return (
@@ -17,7 +24,14 @@ export default function DatoArticlePreview({ articles }: DatoArticleProps) {
                   className="rounded object-cover"
                 />
               </div>
-              <p className="text-2xl">{article.title}</p>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <p className="text-2xl">{truncateText(article.title)}</p>
+                  </TooltipTrigger>
+                  <TooltipContent>{article.title}</TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
               <p className="text-sm font-bold text-slate-600">
                 {article.category.name}
               </p>
