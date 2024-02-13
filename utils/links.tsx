@@ -9,7 +9,12 @@ const links: NavLink[] = [
   },
   {
     href: '/api-recipes',
-    label: 'api-recipes',
+    label: 'api recipes',
+    icon: <Utensils />
+  },
+  {
+    href: '/my-recipes',
+    label: 'my recipes',
     icon: <Utensils />
   }
 ]
