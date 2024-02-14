@@ -1,11 +1,10 @@
 'use client'
-import Link from 'next/link'
-import links from '@/utils/links'
 import LinksDropdown from './links-dropdown'
 import { ThemeToggle } from './theme-toggle'
 import { UserButton } from '@clerk/nextjs'
 import Logo from './logo'
 import { usePathname } from 'next/navigation'
+import { MainNavDesktop } from './main-nav-desktop'
 
 export default function Navbar() {
   const pathname = usePathname()
@@ -15,18 +14,9 @@ export default function Navbar() {
         <Logo />
         <LinksDropdown />
       </div>
-      <ul className="w-full hidden lg:flex lg:justify-center lg:gap-x-4">
-        {links.map(link => (
-          <li
-            key={link.label}
-            className={`${
-              pathname === link.href ? 'text-blue-700' : 'text-slate-500'
-            }`}
-          >
-            <Link href={link.href}>{link.label}</Link>
-          </li>
-        ))}
-      </ul>
+      <div className="w-full hidden lg:flex lg:justify-center lg:gap-x-4">
+        <MainNavDesktop />
+      </div>
       <div className="flex items-center gap-x-4">
         <ThemeToggle />
         <UserButton afterSignOutUrl="/" />
