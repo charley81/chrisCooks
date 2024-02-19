@@ -2,16 +2,12 @@ import { Control } from 'react-hook-form'
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
 import {
-  Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -44,7 +40,7 @@ export function CustomFormInput({ name, control }: CustomFormInputProps) {
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel className="capitalize">{name}</FormLabel>
+          <FormLabel className="capitalize font-bold">{name}</FormLabel>
           <FormControl>
             <Input {...field} />
           </FormControl>
@@ -62,7 +58,7 @@ export function CustomFormTextArea({ name, control }: CustomTextAreaProps) {
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel className="capitalize">{name}</FormLabel>
+          <FormLabel className="capitalize font-bold">{name}</FormLabel>
           <FormControl>
             <Textarea {...field} />
           </FormControl>
@@ -85,7 +81,9 @@ export function CustomFormSelect({
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{label || name}</FormLabel>
+          <FormLabel className="capitalize font-bold">
+            {label || name}
+          </FormLabel>
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
               <SelectTrigger>

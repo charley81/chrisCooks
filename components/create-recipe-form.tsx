@@ -32,7 +32,7 @@ export function CreateRecipeForm() {
     defaultValues: {
       title: '',
       category: Categories.Beef,
-      message: ''
+      description: ''
     }
   })
 
@@ -42,14 +42,19 @@ export function CreateRecipeForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <CustomFormInput name="title" control={form.control} />
-        <CustomFormSelect
-          items={Object.values(Categories)}
-          name="category"
-          control={form.control}
-          label="category"
-        />
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="pt-16 px-4 grid gap-8"
+      >
+        <div className="grid lg:grid-cols-2 lg:gap-1">
+          <CustomFormInput name="title" control={form.control} />
+          <CustomFormSelect
+            items={Object.values(Categories)}
+            name="category"
+            control={form.control}
+            label="category"
+          />
+        </div>
         <CustomFormTextArea name="description" control={form.control} />
         <Button type="submit">Submit</Button>
       </form>
