@@ -1,5 +1,5 @@
 import { CookingPot, Utensils } from 'lucide-react'
-import { NavLink } from './types'
+import { NavLink } from '../types/articles/article-types'
 
 const links: NavLink[] = [
   {

@@ -1,7 +1,9 @@
+import { CreateRecipeForm } from '@/components/create-recipe-form'
+
 export default function AddRecipePage() {
   return (
-    <div>
-      <h1 className="text-4xl text-center">Add Recipe</h1>
+    <div className="max-w-3xl mx-auto">
+      <CreateRecipeForm />
     </div>
   )
 }

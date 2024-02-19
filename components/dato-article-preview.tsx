@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { DatoArticleProps } from '@/utils/types'
+import { DatoArticleProps } from '@/utils/types/articles/article-types'
 import { truncateText } from '@/utils/helpers'
 import {
   Tooltip,

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { request } from '../../../../lib/datocms'
-import { DatoCMSArticleDetails } from '../../../../utils/types'
+import { DatoCMSArticleDetails } from '../../../../utils/types/articles/article-types'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
