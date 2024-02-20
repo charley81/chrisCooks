@@ -16,6 +16,11 @@ import {
   CustomFormTextArea
 } from './custom-form'
 
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { createRecipeAction } from '@/utils/actions'
+import { useToast } from './ui/use-toast'
+import { useRouter } from 'next/navigation'
+
 export function CreateRecipeForm() {
   const form = useForm<CreateAndEditRecipeType>({
     resolver: zodResolver(CreateAndEditRecipeSchema),
@@ -26,8 +31,27 @@ export function CreateRecipeForm() {
     }
   })
 
-  function onSubmit(data: CreateAndEditRecipeType) {
-    console.log(data)
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  const router = useRouter()
+  const { mutate, isPending } = useMutation({
+    mutationFn: (values: CreateAndEditRecipeType) => createRecipeAction(values),
+    onSuccess: data => {
+      if (!data) {
+        toast({ description: 'There was an error' })
+        return
+      }
+      toast({ description: 'Great! Recipe created' })
+      queryClient.invalidateQueries({ queryKey: ['title'] })
+      queryClient.invalidateQueries({ queryKey: ['category'] })
+      queryClient.invalidateQueries({ queryKey: ['description'] })
+
+      router.push('/my-recipes')
+    }
+  })
+
+  function onSubmit(values: CreateAndEditRecipeType) {
+    mutate(values)
   }
 
   return (
@@ -46,7 +70,9 @@ export function CreateRecipeForm() {
           />
         </div>
         <CustomFormTextArea name="description" control={form.control} />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={isPending}>
+          {isPending ? 'Loading...' : 'Submit'}
+        </Button>
       </form>
     </Form>
   )

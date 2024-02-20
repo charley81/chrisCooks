@@ -1,9 +1,17 @@
 import { CreateRecipeForm } from '@/components/create-recipe-form'
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient
+} from '@tanstack/react-query'
 
 export default function AddRecipePage() {
+  const queryClient = new QueryClient()
   return (
-    <div className="max-w-3xl mx-auto">
-      <CreateRecipeForm />
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <div className="max-w-3xl mx-auto">
+        <CreateRecipeForm />
+      </div>
+    </HydrationBoundary>
   )
 }
