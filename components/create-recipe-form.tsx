@@ -2,24 +2,14 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 import {
-  MyRecipe,
-  Categories,
+  CategoryTypes,
   CreateAndEditRecipeSchema,
   CreateAndEditRecipeType
 } from '@/types/my-recipes/types'
 
 import { Button } from '@/components/ui/button'
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from '@/components/ui/form'
+import { Form } from '@/components/ui/form'
 import {
   CustomFormInput,
   CustomFormSelect,
@@ -31,7 +21,7 @@ export function CreateRecipeForm() {
     resolver: zodResolver(CreateAndEditRecipeSchema),
     defaultValues: {
       title: '',
-      category: Categories.Beef,
+      category: CategoryTypes.Beef,
       description: ''
     }
   })
@@ -49,7 +39,7 @@ export function CreateRecipeForm() {
         <div className="grid lg:grid-cols-2 lg:gap-1">
           <CustomFormInput name="title" control={form.control} />
           <CustomFormSelect
-            items={Object.values(Categories)}
+            items={Object.values(CategoryTypes)}
             name="category"
             control={form.control}
             label="category"

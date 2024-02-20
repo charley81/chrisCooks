@@ -1,12 +1,16 @@
 import { z } from 'zod'
 
-export interface MyRecipe {
+export interface MyRecipeType {
+  id: string
+  createdAt: Date
+  updatedAt: Date
+  clerkId: string
   title: string
   category: string
   description: string
 }
 
-export enum Categories {
+export enum CategoryTypes {
   Goat = 'Goat',
   Breakfast = 'Breakfast',
   Vegetarian = 'Vegetarian',
@@ -27,7 +31,7 @@ export const CreateAndEditRecipeSchema = z.object({
   title: z.string().min(2, {
     message: 'Title must be at least two characters'
   }),
-  category: z.nativeEnum(Categories),
+  category: z.nativeEnum(CategoryTypes),
   description: z.string().min(2, {
     message: 'Message must be at least two characters'
   })
