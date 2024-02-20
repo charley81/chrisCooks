@@ -2,42 +2,56 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 import {
-  MyRecipe,
-  Categories,
+  CategoryTypes,
   CreateAndEditRecipeSchema,
   CreateAndEditRecipeType
 } from '@/types/my-recipes/types'
 
 import { Button } from '@/components/ui/button'
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from '@/components/ui/form'
+import { Form } from '@/components/ui/form'
 import {
   CustomFormInput,
   CustomFormSelect,
   CustomFormTextArea
 } from './custom-form'
 
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { createRecipeAction } from '@/utils/actions'
+import { useToast } from './ui/use-toast'
+import { useRouter } from 'next/navigation'
+
 export function CreateRecipeForm() {
   const form = useForm<CreateAndEditRecipeType>({
     resolver: zodResolver(CreateAndEditRecipeSchema),
     defaultValues: {
       title: '',
-      category: Categories.Beef,
+      category: CategoryTypes.Beef,
       description: ''
     }
   })
 
-  function onSubmit(data: CreateAndEditRecipeType) {
-    console.log(data)
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  const router = useRouter()
+  const { mutate, isPending } = useMutation({
+    mutationFn: (values: CreateAndEditRecipeType) => createRecipeAction(values),
+    onSuccess: data => {
+      if (!data) {
+        toast({ description: 'There was an error' })
+        return
+      }
+      toast({ description: 'Great! Recipe created' })
+      queryClient.invalidateQueries({ queryKey: ['title'] })
+      queryClient.invalidateQueries({ queryKey: ['category'] })
+      queryClient.invalidateQueries({ queryKey: ['description'] })
+
+      router.push('/my-recipes')
+    }
+  })
+
+  function onSubmit(values: CreateAndEditRecipeType) {
+    mutate(values)
   }
 
   return (
@@ -49,14 +63,16 @@ export function CreateRecipeForm() {
         <div className="grid lg:grid-cols-2 lg:gap-1">
           <CustomFormInput name="title" control={form.control} />
           <CustomFormSelect
-            items={Object.values(Categories)}
+            items={Object.values(CategoryTypes)}
             name="category"
             control={form.control}
             label="category"
           />
         </div>
         <CustomFormTextArea name="description" control={form.control} />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={isPending}>
+          {isPending ? 'Loading...' : 'Submit'}
+        </Button>
       </form>
     </Form>
   )
