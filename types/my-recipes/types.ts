@@ -38,3 +38,10 @@ export const CreateAndEditRecipeSchema = z.object({
 })
 
 export type CreateAndEditRecipeType = z.infer<typeof CreateAndEditRecipeSchema>
+
+export type GetAllRecipesActionTypes = {
+  search?: string
+  recipeCategory?: string
+  page?: number
+  limit?: number
+}

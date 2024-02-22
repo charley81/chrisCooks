@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
 import { request } from '../../../lib/datocms'
-import DatoArticlePreview from '@/components/dato-article-preview'
-import PageTitle from '@/components/page-title'
-import PageDescription from '@/components/page-description'
+import DatoArticlePreview from '@/components/article/dato-article-preview'
+import PageTitle from '@/components/shared/page-title'
+import PageDescription from '@/components/shared/page-description'
 
 const MEAL_ARTICLES_QUERY = `
 query MyQuery {

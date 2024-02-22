@@ -1,4 +1,4 @@
-import { CreateRecipeForm } from '@/components/create-recipe-form'
+import { CreateRecipeForm } from '@/components/form/create-recipe-form'
 import {
   dehydrate,
   HydrationBoundary,

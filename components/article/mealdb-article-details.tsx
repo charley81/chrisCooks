@@ -1,5 +1,5 @@
 import { MealDbAPIArticle } from '../utils/types/articles/article-types'
-import { truncateText } from '../utils/helpers'
+import { truncateText } from '../../utils/helpers'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
