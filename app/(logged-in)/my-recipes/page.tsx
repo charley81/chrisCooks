@@ -1,7 +1,24 @@
-export default function MyRecipesPage() {
+import RecipeList from '@/components/my-recipes/recipe-list'
+import SearchForm from '@/components/form/search-form'
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient
+} from '@tanstack/react-query'
+import { getAllRecipesAction } from '@/utils/actions'
+
+export default async function MyRecipesPage() {
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery({
+    queryKey: ['recipes', '', 'all', 1],
+    queryFn: () => getAllRecipesAction({})
+  })
+
   return (
-    <div>
-      <h1 className="text-2xl text-center mt-24">My Recipes</h1>
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <SearchForm />
+      <RecipeList />
+    </HydrationBoundary>
   )
 }
