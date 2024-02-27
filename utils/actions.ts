@@ -92,3 +92,21 @@ export async function getAllRecipesAction({
     return { recipes: [], count: 0, page: 1, totalPages: 0 }
   }
 }
+
+export async function deleteRecipeAction(
+  id: string
+): Promise<MyRecipeType | null> {
+  const userId = authenticateAndRedirect()
+
+  try {
+    const recipe: MyRecipeType = await prisma.recipe.delete({
+      where: {
+        id,
+        clerkId: userId
+      }
+    })
+    return recipe
+  } catch (error) {
+    return null
+  }
+}
