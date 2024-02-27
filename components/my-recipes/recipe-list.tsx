@@ -29,7 +29,7 @@ export default function RecipeList() {
   return (
     <>
       {/* button container  */}
-      <div className="grid mg:grid-cols-2 gap-8">
+      <div className="grid md:grid-cols-2 gap-4 p-8">
         {recipes.map(recipe => (
           <RecipeCard key={recipe.id} recipe={recipe} />
         ))}
