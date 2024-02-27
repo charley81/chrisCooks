@@ -11,7 +11,7 @@ export default async function MyRecipesPage() {
   const queryClient = new QueryClient()
 
   await queryClient.prefetchQuery({
-    queryKey: ['recipes', '', 'all', 1],
+    queryKey: ['recipes', 'all', 1],
     queryFn: () => getAllRecipesAction({})
   })
 

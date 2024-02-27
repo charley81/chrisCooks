@@ -2,7 +2,7 @@
 
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
-import { usePathname, useParams, useSearchParams } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import {
   Select,
   SelectContent,
@@ -13,12 +13,24 @@ import {
 import { CategoryTypes } from '@/types/my-recipes/types'
 
 export default function SearchForm() {
+  const searchParams = useSearchParams()
+  const searchFromUrl = searchParams.get('search')?.toLowerCase() || ''
+  const categoryFromUrl = searchParams.get('category')?.toLowerCase() || 'all'
+
+  const router = useRouter()
+  const pathname = usePathname()
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
-    const search = formData.get('search') as string
-    const category = formData.get('category') as string
-    console.log(search, category)
+    const searchFromForm = formData.get('search') as string
+    const categoryFromForm = formData.get('category') as string
+
+    let params = new URLSearchParams()
+    params.set('search', searchFromForm.toLowerCase())
+    params.set('category', categoryFromForm.toLowerCase())
+
+    router.push(`${pathname}?${params.toString()}`)
   }
 
   return (
@@ -26,15 +38,20 @@ export default function SearchForm() {
       className="mb-16 p-8 grid sm:grid-cols-2 md:grid-cols-3 gap-4"
       onSubmit={handleSubmit}
     >
-      <Input type="text" placeholder="Search recipes" name="search" />
-      <Select name="category">
+      <Input
+        type="text"
+        placeholder="Search recipes"
+        name="search"
+        defaultValue={searchFromUrl}
+      />
+      <Select name="category" defaultValue={categoryFromUrl}>
         <SelectTrigger>
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
           {['all', ...Object.values(CategoryTypes)].map(category => (
             <SelectItem key={category} value={category}>
-              {category}
+              {category.toLowerCase()}
             </SelectItem>
           ))}
         </SelectContent>
