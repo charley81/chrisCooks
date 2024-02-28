@@ -44,7 +44,7 @@ export default function RecipeCard({ recipe }: { recipe: MyRecipeType }) {
               <Pencil />
             </Link>
           </Button>
-          <DeleteRecipeBtn />
+          <DeleteRecipeBtn id={recipe.id} />
         </div>
       </CardFooter>
     </Card>
