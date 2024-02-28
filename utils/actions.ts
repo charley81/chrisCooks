@@ -110,3 +110,26 @@ export async function deleteRecipeAction(
     return null
   }
 }
+
+export async function getSingleRecipeAction({
+  id
+}: {
+  id: string
+}): Promise<MyRecipeType | null> {
+  let recipe: MyRecipeType | null = null
+  const userId = authenticateAndRedirect()
+  try {
+    recipe = await prisma.recipe.findUnique({
+      where: {
+        id,
+        clerkId: userId
+      }
+    })
+  } catch (error) {
+    recipe = null
+  }
+  if (!recipe) {
+    redirect('/my-recipes')
+  }
+  return recipe
+}
