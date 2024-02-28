@@ -111,11 +111,9 @@ export async function deleteRecipeAction(
   }
 }
 
-export async function getSingleRecipeAction({
-  id
-}: {
+export async function getSingleRecipeAction(
   id: string
-}): Promise<MyRecipeType | null> {
+): Promise<MyRecipeType | null> {
   let recipe: MyRecipeType | null = null
   const userId = authenticateAndRedirect()
   try {
