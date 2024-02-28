@@ -1,5 +1,5 @@
-import RecipeList from '@/components/my-recipes/recipe-list'
-import SearchForm from '@/components/form/search-form'
+import RecipeList from '../../../components/my-recipes/recipe-list'
+import SearchForm from '../../../components/form/search-form'
 import {
   dehydrate,
   HydrationBoundary,
