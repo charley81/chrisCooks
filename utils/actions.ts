@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation'
 import { Prisma } from '@prisma/client'
 import dayjs from 'dayjs'
 import {
-  CreateAndEditRecipeSchema,
+  createAndEditRecipeSchema,
   CreateAndEditRecipeType,
   MyRecipeType,
   GetAllRecipesActionTypes
@@ -22,10 +22,10 @@ function authenticateAndRedirect(): string {
 export async function createRecipeAction(
   values: CreateAndEditRecipeType
 ): Promise<MyRecipeType | null> {
-  await new Promise(resolve => setTimeout(resolve, 3000))
   const userId = authenticateAndRedirect()
+
   try {
-    CreateAndEditRecipeSchema.parse(values)
+    createAndEditRecipeSchema.parse(values)
     const recipe: MyRecipeType = await prisma.recipe.create({
       data: {
         ...values,
@@ -116,6 +116,7 @@ export async function getSingleRecipeAction(
 ): Promise<MyRecipeType | null> {
   let recipe: MyRecipeType | null = null
   const userId = authenticateAndRedirect()
+
   try {
     recipe = await prisma.recipe.findUnique({
       where: {
@@ -130,4 +131,26 @@ export async function getSingleRecipeAction(
     redirect('/my-recipes')
   }
   return recipe
+}
+
+export async function updateRecipeAction(
+  id: string,
+  values: CreateAndEditRecipeType
+): Promise<MyRecipeType | null> {
+  const userId = authenticateAndRedirect()
+
+  try {
+    const recipe: MyRecipeType = await prisma.recipe.update({
+      where: {
+        id,
+        clerkId: userId
+      },
+      data: {
+        ...values
+      }
+    })
+    return recipe
+  } catch (error) {
+    return null
+  }
 }

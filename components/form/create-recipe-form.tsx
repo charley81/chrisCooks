@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import {
   CategoryTypes,
-  CreateAndEditRecipeSchema,
+  createAndEditRecipeSchema,
   CreateAndEditRecipeType
 } from '@/types/my-recipes/types'
 
@@ -23,7 +23,7 @@ import { useRouter } from 'next/navigation'
 
 export function CreateRecipeForm() {
   const form = useForm<CreateAndEditRecipeType>({
-    resolver: zodResolver(CreateAndEditRecipeSchema),
+    resolver: zodResolver(createAndEditRecipeSchema),
     defaultValues: {
       title: '',
       category: CategoryTypes.Beef,
