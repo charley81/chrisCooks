@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
-import BlogPostPreview from '@/components/dato-article-preview'
+import BlogPostPreview from '@/components/article/dato-article-preview'
 import Link from 'next/link'
-import PageTitle from '@/components/page-title'
-import MealsDbRecipeList from '@/components/mealsdb-recipe-list'
+import PageTitle from '@/components/shared/page-title'
+import MealsDbRecipeList from '@/components/article/mealsdb-recipe-list'
 
 const url = 'https://www.themealdb.com/api/json/v1/1/search.php?f=a'
 
@@ -25,7 +25,7 @@ export const metaData: Metadata = {
 export default async function ApiRecipesPage() {
   const data = await fetchMeals()
   const { meals } = data
-  
+
   return (
     <main className="p-4 mt-8 max-w-xl mx-auto">
       <PageTitle title="Mead DB API" />

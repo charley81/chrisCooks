@@ -3,7 +3,7 @@ import Image from 'next/image'
 import ShowcaseImg from '../assets/showcase.svg'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import Logo from '@/components/logo'
+import Logo from '@/components/navigation/logo'
 
 export const metaData: Metadata = {
   title: 'chrisCooks',

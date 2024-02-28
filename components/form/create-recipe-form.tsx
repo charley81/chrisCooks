@@ -18,7 +18,7 @@ import {
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { createRecipeAction } from '@/utils/actions'
-import { useToast } from './ui/use-toast'
+import { useToast } from '../ui/use-toast'
 import { useRouter } from 'next/navigation'
 
 export function CreateRecipeForm() {
