@@ -16,7 +16,6 @@ import { CloudCog } from 'lucide-react'
 function authenticateAndRedirect(): string {
   const { userId } = auth()
   if (!userId) redirect('/')
-  console.log('userId: ', userId)
   return userId
 }
 
@@ -81,14 +80,21 @@ export async function getAllRecipesAction({
       }
     }
 
+    const skip = (page - 1) * limit
+
     const recipes: MyRecipeType[] = await prisma.recipe.findMany({
       where: whereClause,
+      skip,
+      take: limit,
       orderBy: {
         createdAt: 'desc'
       }
     })
 
-    return { recipes, count: 0, page: 1, totalPages: 0 }
+    const count: number = await prisma.recipe.count({ where: whereClause })
+    const totalPages = Math.ceil(count / limit)
+
+    return { recipes, count, page, totalPages }
   } catch {
     return { recipes: [], count: 0, page: 1, totalPages: 0 }
   }

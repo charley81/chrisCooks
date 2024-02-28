@@ -45,3 +45,13 @@ export type GetAllRecipesActionTypes = {
   page?: number
   limit?: number
 }
+
+export type PaginationContainerProps = {
+  currentPage: number
+  totalPages: number
+}
+
+export type PaginationButtonProps = {
+  page: number
+  activeClass: boolean
+}
