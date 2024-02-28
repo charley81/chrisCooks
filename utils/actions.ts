@@ -16,6 +16,7 @@ import { CloudCog } from 'lucide-react'
 function authenticateAndRedirect(): string {
   const { userId } = auth()
   if (!userId) redirect('/')
+  console.log('userId: ', userId)
   return userId
 }
 
