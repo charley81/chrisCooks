@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation'
 import { getAllRecipesAction } from '@/utils/actions'
 import { useQuery } from '@tanstack/react-query'
 import RecipeCard from './recipe-card'
+import ButtonContainer from '../pagination/pagination-container'
 
 export default function RecipeList() {
   const searchParams = useSearchParams()
@@ -21,6 +22,9 @@ export default function RecipeList() {
   })
 
   const recipes = data?.recipes || []
+  const count = data?.count || 0
+  const page = data?.page || 0
+  const totalPages = data?.totalPages || 0
 
   if (isPending) return <h2 className="text-xl">Please wait...</h2>
   if (recipes.length < 1)
@@ -28,7 +32,14 @@ export default function RecipeList() {
 
   return (
     <>
-      {/* button container  */}
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-semibold capitalize">
+          {count} recipes found
+        </h2>
+        {totalPages < 2 ? null : (
+          <ButtonContainer currentPage={page} totalPages={totalPages} />
+        )}
+      </div>
       <div className="grid md:grid-cols-2 gap-4 p-8">
         {recipes.map(recipe => (
           <RecipeCard key={recipe.id} recipe={recipe} />
