@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation'
 import { Prisma } from '@prisma/client'
 import dayjs from 'dayjs'
 import {
-  CreateAndEditRecipeSchema,
+  createAndEditRecipeSchema,
   CreateAndEditRecipeType,
   MyRecipeType,
   GetAllRecipesActionTypes
@@ -25,7 +25,7 @@ export async function createRecipeAction(
   const userId = authenticateAndRedirect()
 
   try {
-    CreateAndEditRecipeSchema.parse(values)
+    createAndEditRecipeSchema.parse(values)
     const recipe: MyRecipeType = await prisma.recipe.create({
       data: {
         ...values,

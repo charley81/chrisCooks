@@ -27,7 +27,7 @@ export enum CategoryTypes {
   Beef = 'Beef'
 }
 
-export const CreateAndEditRecipeSchema = z.object({
+export const createAndEditRecipeSchema = z.object({
   title: z.string().min(2, {
     message: 'Title must be at least two characters'
   }),
@@ -37,7 +37,7 @@ export const CreateAndEditRecipeSchema = z.object({
   })
 })
 
-export type CreateAndEditRecipeType = z.infer<typeof CreateAndEditRecipeSchema>
+export type CreateAndEditRecipeType = z.infer<typeof createAndEditRecipeSchema>
 
 export type GetAllRecipesActionTypes = {
   search?: string
