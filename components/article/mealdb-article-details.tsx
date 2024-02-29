@@ -15,7 +15,7 @@ export default function MealDbArticleDetails({
   meal: MealDbAPIArticle
 }) {
   return (
-    <div key={meal.idMeal} className="p-4 mt-8 max-w-xl mx-auto">
+    <div key={meal.idMeal} className="max-w-xl mx-auto">
       <Link href={`/api-recipes/${meal.idMeal}`}>
         <div className="relative h-60">
           <Image
@@ -33,7 +33,7 @@ export default function MealDbArticleDetails({
             <TooltipContent>{meal.strMeal}</TooltipContent>
           </Tooltip>
         </TooltipProvider>
-        <p className="text-sm font-bold text-slate-600">{meal.strCategory}</p>
+        <p className="text-sm text-muted-foreground">{meal.strCategory}</p>
       </Link>
     </div>
   )
