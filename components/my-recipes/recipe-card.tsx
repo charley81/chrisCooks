@@ -19,20 +19,17 @@ export default function RecipeCard({ recipe }: { recipe: MyRecipeType }) {
   const date = new Date(recipe.createdAt).toLocaleDateString()
 
   return (
-    <Card className="bg-muted">
+    <Card className="bg-card">
       {/* header */}
       <CardHeader>
         <CardTitle>{recipe.title}</CardTitle>
         <CardDescription>{recipe.category}</CardDescription>
       </CardHeader>
-      <Separator className="mt-4" />
 
-      {/* description */}
       <CardContent>
-        <p>{recipe.description}</p>
+        <p className="text-muted-foreground">{recipe.description}</p>
       </CardContent>
 
-      {/* footer */}
       <CardFooter className="flex justify-between">
         <p className="flex items-center gap-2">
           <CalendarDays />

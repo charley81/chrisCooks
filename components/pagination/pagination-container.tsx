@@ -86,7 +86,7 @@ export default function PaginationContainer({
   }
 
   return (
-    <div className="flex  gap-x-2">
+    <div className="max-w-6xl flex gap-x-2 justify-between md:justify-end">
       {/* prev */}
       <Button
         className="flex items-center gap-x-2 "

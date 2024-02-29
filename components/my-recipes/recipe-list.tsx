@@ -32,15 +32,15 @@ export default function RecipeList() {
 
   return (
     <>
-      <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold capitalize">
+      <div className="max-w-6xl mx-auto flex flex-col p-4">
+        <h2 className="text-sm self-end pb-4 font-bold text-muted-foreground">
           {count} recipes found
         </h2>
         {totalPages < 2 ? null : (
           <ButtonContainer currentPage={page} totalPages={totalPages} />
         )}
       </div>
-      <div className="grid md:grid-cols-2 gap-4 p-8">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
         {recipes.map(recipe => (
           <RecipeCard key={recipe.id} recipe={recipe} />
         ))}

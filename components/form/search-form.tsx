@@ -35,28 +35,33 @@ export default function SearchForm() {
 
   return (
     <form
-      className="mb-16 p-8 grid sm:grid-cols-2 md:grid-cols-3 gap-4"
+      className="max-w-6xl mx-auto px-4 grid gap-4 mt-32 mb-16"
       onSubmit={handleSubmit}
     >
-      <Input
-        type="text"
-        placeholder="Search recipes"
-        name="search"
-        defaultValue={searchFromUrl}
-      />
-      <Select name="category" defaultValue={categoryFromUrl}>
-        <SelectTrigger>
-          <SelectValue />
-        </SelectTrigger>
-        <SelectContent>
-          {['all', ...Object.values(CategoryTypes)].map(category => (
-            <SelectItem key={category} value={category}>
-              {category.toLowerCase()}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-      <Button type="submit">Search</Button>
+      <div className="grid gap-4 md:grid-cols-2">
+        <Input
+          type="text"
+          placeholder="Search recipes"
+          name="search"
+          defaultValue={searchFromUrl}
+        />
+        <Select name="category" defaultValue={categoryFromUrl}>
+          <SelectTrigger>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {['all', ...Object.values(CategoryTypes)].map(category => (
+              <SelectItem key={category} value={category}>
+                {category.toLowerCase()}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <Button type="submit" variant="default" size="lg">
+        Search
+      </Button>
     </form>
   )
 }
