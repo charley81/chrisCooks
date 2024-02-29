@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { request } from '../../../../lib/datocms'
-import { DatoCMSArticleDetails } from '../../../../utils/types/articles/article-types'
+import { DatoCMSArticleDetails } from '../../../../types/articles/article-types'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
@@ -36,7 +36,7 @@ export default async function DatoArticleDetails({
   })
 
   return (
-    <div className="max-w-4xl mx-auto mt-16 px-4">
+    <div className="max-w-6xl mx-auto mt-16 px-4">
       <div className="relative h-80">
         <Image
           src={article.coverImage.url}
@@ -46,14 +46,15 @@ export default async function DatoArticleDetails({
         />
       </div>
       <h3 className="text-4xl pt-4 font-bold">{article.title}</h3>
-      <h4 className="text-1xl text-slate-600 mt-2 mb-2 font-bold">
-        {article.category.name}
-      </h4>
+      <div className="flex gap-4 items-center my-8">
+        <h4 className="text-1xl text-muted-foreground mt-2 mb-2 font-bold">
+          {article.category.name}
+        </h4>
+        <Button asChild>
+          <Link href="/recipes">Back</Link>
+        </Button>
+      </div>
       <p className="text-slate-600 text-base">{article.content}</p>
-
-      <Button className="mt-4" asChild>
-        <Link href="/recipes">Back</Link>
-      </Button>
     </div>
   )
 }

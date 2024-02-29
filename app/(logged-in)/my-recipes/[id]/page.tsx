@@ -17,6 +17,7 @@ export default async function RecipeDetailsPage({
     queryKey: ['recipe', params.id],
     queryFn: () => getSingleRecipeAction(params.id)
   })
+
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <EditRecipeForm recipeId={params.id} />

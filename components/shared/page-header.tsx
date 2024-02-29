@@ -1,10 +1,6 @@
 import PageTitle from './page-title'
 import PageDescription from './page-description'
-
-type PageHeaderTypes = {
-  title: string
-  description: string
-}
+import { PageHeaderTypes } from '@/types/shared/types'
 
 export default function PageHeader({ title, description }: PageHeaderTypes) {
   return (
