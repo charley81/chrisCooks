@@ -28,10 +28,10 @@ export default async function ApiRecipesPage() {
   const { meals } = data
 
   return (
-    <main className="max-w-6xl mx-auto px-4">
+    <main className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-24 xl:px-40">
       <PageHeader
         title="Lets search for something special"
-        description="Welcome to tha land of endless possibilities! Just perform a quick search and find your next recipe. This page gets recipes from a third party API called 'The Meals DB'. Ahh, he we go with the tech stuff again. Well, enjoy searching thousands of recipes!"
+        description="Welcome to tha land of endless possibilities! Just perform a quick search and find your next recipe. This page gets recipes from a third party API called 'The Meals DB'. Search thousands of recipes, I'm sure you'll find something worth trying. Ahh, he we go with the tech stuff again. Well, enjoy searching thousands of recipes!"
       />
       <MealsDbRecipeList meals={meals} />
     </main>

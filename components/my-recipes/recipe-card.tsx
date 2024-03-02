@@ -9,17 +9,15 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card'
-import { Separator } from '../ui/separator'
 import { Button } from '../ui/button'
-import { Badge } from '../ui/badge'
-import RecipeInfo from './recipe-info'
 import DeleteRecipeBtn from './delete-recipe-btn'
+import { truncateText } from '@/utils/helpers'
 
 export default function RecipeCard({ recipe }: { recipe: MyRecipeType }) {
   const date = new Date(recipe.createdAt).toLocaleDateString()
 
   return (
-    <Card className="bg-card">
+    <Card className="bg-card flex flex-col">
       {/* header */}
       <CardHeader>
         <CardTitle>{recipe.title}</CardTitle>
@@ -27,10 +25,12 @@ export default function RecipeCard({ recipe }: { recipe: MyRecipeType }) {
       </CardHeader>
 
       <CardContent>
-        <p className="text-muted-foreground">{recipe.description}</p>
+        <p className="text-muted-foreground">
+          {truncateText(recipe.description, 'lg')}
+        </p>
       </CardContent>
 
-      <CardFooter className="flex justify-between">
+      <CardFooter className="flex justify-between flex-auto">
         <p className="flex items-center gap-2">
           <CalendarDays />
           {date}

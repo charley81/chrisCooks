@@ -9,7 +9,7 @@ import { MainNavDesktop } from './main-nav-desktop'
 export default function Navbar() {
   const pathname = usePathname()
   return (
-    <nav className="py-4 sm:px-16 lg:px-24 px-4 flex items-center justify-between">
+    <nav className="py-4 px-4 sm:px-8 lg:px-24 xl:px-48 flex items-center justify-between">
       <div>
         <Logo />
         <LinksDropdown />

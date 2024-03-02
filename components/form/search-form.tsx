@@ -35,7 +35,7 @@ export default function SearchForm() {
 
   return (
     <form
-      className="max-w-6xl mx-auto px-4 grid gap-4 mt-32 mb-16"
+      className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-24 xl:px-40 grid gap-4 mt-32 mb-16"
       onSubmit={handleSubmit}
     >
       <div className="grid gap-4 md:grid-cols-2">

@@ -5,6 +5,8 @@ import { getAllRecipesAction } from '@/utils/actions'
 import { useQuery } from '@tanstack/react-query'
 import RecipeCard from './recipe-card'
 import ButtonContainer from '../pagination/pagination-container'
+import Loader from '../shared/Loader'
+import Link from 'next/link'
 
 export default function RecipeList() {
   const searchParams = useSearchParams()
@@ -26,9 +28,29 @@ export default function RecipeList() {
   const page = data?.page || 0
   const totalPages = data?.totalPages || 0
 
-  if (isPending) return <h2 className="text-xl">Please wait...</h2>
+  if (isPending)
+    return (
+      <h2 className="text-2xl text-left max-w-6xl mx-auto">
+        <Loader />
+      </h2>
+    )
   if (recipes.length < 1)
-    return <h2 className="text-xl">No recipes found...</h2>
+    return (
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-24 xl:px-48">
+        <h2 className="text-md text-muted-foreground">
+          Click{' '}
+          <span>
+            <Link
+              href="my-recipes/add-recipe"
+              className="text-primary font-extrabold text-4xl"
+            >
+              here
+            </Link>
+          </span>{' '}
+          to start adding recipes
+        </h2>
+      </div>
+    )
 
   return (
     <>
@@ -40,7 +62,7 @@ export default function RecipeList() {
           <ButtonContainer currentPage={page} totalPages={totalPages} />
         )}
       </div>
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-4 px-4">
         {recipes.map(recipe => (
           <RecipeCard key={recipe.id} recipe={recipe} />
         ))}
