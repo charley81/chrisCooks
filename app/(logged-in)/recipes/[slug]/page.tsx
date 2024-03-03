@@ -54,7 +54,7 @@ export default async function DatoArticleDetails({
           <Link href="/recipes">Back</Link>
         </Button>
       </div>
-      <p className="text-slate-600 text-base">{article.content}</p>
+      <p className="text-muted-foreground text-base">{article.content}</p>
     </div>
   )
 }

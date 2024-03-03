@@ -54,7 +54,7 @@ export default function RecipeList() {
 
   return (
     <>
-      <div className="max-w-6xl mx-auto flex flex-col p-4">
+      <div className="max-w-6xl mx-auto flex flex-col p-4 px-4 sm:px-8 lg:px-24">
         <h2 className="text-sm self-end pb-4 font-bold text-muted-foreground">
           {count} recipes found
         </h2>
@@ -62,7 +62,7 @@ export default function RecipeList() {
           <ButtonContainer currentPage={page} totalPages={totalPages} />
         )}
       </div>
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-4 px-4">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-4 px-4 sm:px-8 lg:px-24">
         {recipes.map(recipe => (
           <RecipeCard key={recipe.id} recipe={recipe} />
         ))}
