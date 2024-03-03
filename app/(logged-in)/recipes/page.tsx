@@ -1,8 +1,7 @@
 import { Metadata } from 'next'
 import { request } from '../../../lib/datocms'
 import DatoArticlePreview from '@/components/article/dato-article-preview'
-import PageTitle from '@/components/shared/page-title'
-import PageDescription from '@/components/shared/page-description'
+import PageHeader from '@/components/shared/page-header'
 
 const MEAL_ARTICLES_QUERY = `
 query MyQuery {
@@ -32,10 +31,12 @@ export default async function RecipesPage() {
   } = await request({ query: MEAL_ARTICLES_QUERY })
 
   return (
-    <main className="p-4 mt-8 max-w-xl mx-auto">
-      <PageTitle title="Chris recipes" />
-      <PageDescription description="Recipes from Chris saved in Dato CMS" />
-      <section className="mt-8 px-4">
+    <main className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-24 xl:px-40">
+      <PageHeader
+        title="Check out my recipes"
+        description="Hey! I see you've found my recipes. I add recipes weekly right here. I'm using a headless content management system (CMS), which is a user friendly user interface website thingy where I can easily enter recipes and show them to the world. Well enough of the tech talk 🤣. Check out some of my recipes. Just click and image to get more details. I hope you enjoy!"
+      />
+      <section className="">
         <DatoArticlePreview articles={allArticles} />
       </section>
     </main>

@@ -3,7 +3,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import {
-  MyRecipeType,
   CategoryTypes,
   createAndEditRecipeSchema,
   CreateAndEditRecipeType
@@ -15,14 +14,11 @@ import {
   CustomFormSelect,
   CustomFormTextArea
 } from './custom-form'
-import {
-  createRecipeAction,
-  getSingleRecipeAction,
-  updateRecipeAction
-} from '@/utils/actions'
+import { getSingleRecipeAction, updateRecipeAction } from '@/utils/actions'
 import { useToast } from '../ui/use-toast'
 import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export default function EditRecipeForm({ recipeId }: { recipeId: string }) {
   const queryClient = useQueryClient()
@@ -68,22 +64,29 @@ export default function EditRecipeForm({ recipeId }: { recipeId: string }) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="bg-muted p-8 rounded"
+        className="bg-muted rounded max-w-6xl mx-auto mt-16 p-4 "
       >
-        <h2 className="capitalize font-semibold text-4xl mb-6">Edit recipe</h2>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 items-start">
-          <CustomFormInput name="title" control={form.control} />
-          <CustomFormSelect
-            name="category"
-            control={form.control}
-            label="recipe category"
-            items={Object.values(CategoryTypes)}
-          />
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="capitalize font-semibold text-4xl pt-4 px-2">
+            Edit recipe
+          </h2>
+          <Button onClick={() => router.back()}>Back</Button>
+        </div>
+        <div className="grid gap-4 p-2">
+          <div className="grid md:grid-cols-2 gap-4">
+            <CustomFormInput name="title" control={form.control} />
+            <CustomFormSelect
+              name="category"
+              control={form.control}
+              label="recipe category"
+              items={Object.values(CategoryTypes)}
+            />
+          </div>
           <CustomFormTextArea name="description" control={form.control} />
           <Button
             type="submit"
             disabled={isPending}
-            className="self-end capitalize"
+            className="self-end capitalize mt-4"
           >
             {isPending ? 'updating...' : 'edit recipe'}
           </Button>

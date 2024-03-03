@@ -56,10 +56,7 @@ export function CreateRecipeForm() {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="pt-16 px-4 grid gap-8"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="pt-16 grid gap-8">
         <div className="grid lg:grid-cols-2 lg:gap-1">
           <CustomFormInput name="title" control={form.control} />
           <CustomFormSelect
@@ -70,9 +67,19 @@ export function CreateRecipeForm() {
           />
         </div>
         <CustomFormTextArea name="description" control={form.control} />
-        <Button type="submit" disabled={isPending}>
-          {isPending ? 'Loading...' : 'Submit'}
-        </Button>
+        <div className="flex gap-2">
+          <Button type="submit" disabled={isPending} size="lg">
+            {isPending ? 'Loading...' : 'Submit'}
+          </Button>
+          <Button
+            onClick={() => router.back()}
+            size="lg"
+            disabled={isPending}
+            variant="outline"
+          >
+            Back
+          </Button>
+        </div>
       </form>
     </Form>
   )

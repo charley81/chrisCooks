@@ -1,5 +1,7 @@
-import { PageDescriptionTypes } from '@/utils/types/articles/article-types'
+import { PageDescriptionTypes } from '@/types/articles/article-types'
 
 export default function PageDescription({ description }: PageDescriptionTypes) {
-  return <h3 className="text-md px-4 text-slate-600">{description}</h3>
+  return (
+    <h3 className="text-md text-muted-foreground text-base">{description}</h3>
+  )
 }

@@ -9,38 +9,43 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card'
-import { Separator } from '../ui/separator'
 import { Button } from '../ui/button'
-import { Badge } from '../ui/badge'
-import RecipeInfo from './recipe-info'
 import DeleteRecipeBtn from './delete-recipe-btn'
+import { truncateText } from '@/utils/helpers'
 
 export default function RecipeCard({ recipe }: { recipe: MyRecipeType }) {
   const date = new Date(recipe.createdAt).toLocaleDateString()
+  const formattedDescription = recipe.description.split('\n\n')
 
   return (
-    <Card className="bg-muted">
-      {/* header */}
+    <Card className="flex flex-col static bg-card">
       <CardHeader>
-        <CardTitle>{recipe.title}</CardTitle>
+        <header className="flex justify-between">
+          <CardTitle>{recipe.title}</CardTitle>
+          <CardDescription>
+            <Button size="sm" variant="outline">
+              <Link href={`/my-recipes/${recipe.id}`}>Show page</Link>
+            </Button>
+          </CardDescription>
+        </header>
+
         <CardDescription>{recipe.category}</CardDescription>
       </CardHeader>
-      <Separator className="mt-4" />
 
-      {/* description */}
       <CardContent>
-        <p>{recipe.description}</p>
+        <p className="text-muted-foreground">
+          {truncateText(recipe.description, 'md')}
+        </p>
       </CardContent>
 
-      {/* footer */}
-      <CardFooter className="flex justify-between">
+      <CardFooter className="flex justify-between flex-auto">
         <p className="flex items-center gap-2">
           <CalendarDays />
           {date}
         </p>
         <div className="flex gap-4 items-center">
           <Button asChild size="sm">
-            <Link href={`/my-recipes/${recipe.id}`}>
+            <Link href={`/my-recipes/edit/${recipe.id}`}>
               <Pencil />
             </Link>
           </Button>
