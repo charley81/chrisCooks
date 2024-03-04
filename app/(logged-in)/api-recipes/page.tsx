@@ -4,6 +4,7 @@ import Link from 'next/link'
 import PageTitle from '@/components/shared/page-title'
 import MealsDbRecipeList from '@/components/article/mealsdb-recipe-list'
 import PageHeader from '@/components/shared/page-header'
+import MealDbSearchForm from '@/components/form/mealdb-search-form'
 
 const url = 'https://www.themealdb.com/api/json/v1/1/search.php?f=a'
 
@@ -33,6 +34,7 @@ export default async function ApiRecipesPage() {
         title="Lets search for something special"
         description="Welcome to tha land of endless possibilities! Just perform a quick search and find your next recipe. This page gets recipes from a third party API called 'The Meals DB'. Search thousands of recipes, I'm sure you'll find something worth trying. Ahh, he we go with the tech stuff again. Well, enjoy searching thousands of recipes!"
       />
+      <MealDbSearchForm />
       <MealsDbRecipeList meals={meals} />
     </main>
   )
